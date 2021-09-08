@@ -1,6 +1,5 @@
 ﻿using System.Runtime.InteropServices;
 using System;
-
 namespace Tamagotchi
 {
     class Program
@@ -8,15 +7,24 @@ namespace Tamagotchi
         static void Main(string[] args)
         {
             Tamagotchi tamagotchi = new Tamagotchi();
+            string action;
+
 
             while (tamagotchi.name == "")
             {
                 tamagotchi.name = Naming.GetName();
             }
 
-            System.Console.WriteLine($"Your tamagotchis name is now {tamagotchi.name}");
-            Console.ReadLine();
+            Text.GotchiName(tamagotchi);
 
+            while (tamagotchi.GetAlive())
+            {
+                action = Console.ReadLine();
+            }
+
+            System.Console.WriteLine("Oh no your tamagotchi died");
+
+            Console.ReadLine();
         }
     }
 }

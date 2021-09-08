@@ -1,5 +1,8 @@
+using System.Security.AccessControl;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+
 namespace Tamagotchi
 {
     public class Tamagotchi
@@ -7,9 +10,11 @@ namespace Tamagotchi
         private int hunger;
         private int boredom;
         private List<string> words = new List<string>();
-        private bool isAlive;
+        private bool isAlive = true;
         private Random generator = new Random();
         public string name = "";
+
+        public DateTime time;
 
         public void Feed() //sänker Hunger
         {
@@ -29,21 +34,45 @@ namespace Tamagotchi
         public void Tick()  //ökar hunger och boredom, och om någon av dem kommer över 10 så blir isAlive false.
         {
 
+            TimeSpan dt = DateTime.Now - time;
+
+            hunger += ((int)dt.TotalSeconds) / 300;
+
+
+
+            time = DateTime.Now;
+
+
         }
 
         public void PrintStats() //skriver ut nuvarande hunger och bredom, och meddelar också huruvida tamagotchin lever.
         {
-
+            Console.WriteLine($"Current boredom: {boredom}, hunger: {hunger}. {name} is currently alive");
         }
 
-        public void GetAlive() //returnerar värdet som isAlive har.
+        public bool GetAlive() //returnerar värdet som isAlive har.
         {
-
+            if (boredom < 10 || hunger < 10)
+            {
+                isAlive = true;
+            }
+            else
+            {
+                isAlive = false;
+            }
+            return isAlive;
         }
 
         private void ReduceBoredom() //sänker boredom.
         {
 
+        }
+
+        public Tamagotchi()
+        {
+            time = DateTime.Now;
+            hunger = generator.Next(0, 3);
+            boredom = generator.Next(0, 5);
         }
     }
 }
