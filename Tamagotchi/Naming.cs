@@ -12,7 +12,7 @@ namespace Tamagotchi
             {
                 System.Console.Write("Name your tamagotchi: ");
                 tempName = Console.ReadLine();
-                System.Console.WriteLine($"Your tamagotchis name is {tempName}, do you want to change it? If so write yes otherwise press enter");
+                System.Console.WriteLine($"Your tamagotchis name is {tempName}, do you want to change it? If so write yes otherwise press enter.");
                 input1 = Console.ReadLine().ToLower();
             }
 

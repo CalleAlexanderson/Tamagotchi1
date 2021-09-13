@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Threading;
+using System.Runtime.InteropServices;
 using System;
 namespace Tamagotchi
 {
@@ -8,6 +9,7 @@ namespace Tamagotchi
         {
             Tamagotchi tamagotchi = new Tamagotchi();
             string action;
+            string word;
 
 
             while (tamagotchi.name == "")
@@ -17,12 +19,41 @@ namespace Tamagotchi
 
             Text.GotchiName(tamagotchi);
 
+            Console.WriteLine();
+            Text.GotchiAction(tamagotchi);
+
             while (tamagotchi.GetAlive())
             {
-                action = Console.ReadLine();
-            }
+                action = Console.ReadLine().ToLower();
 
-            System.Console.WriteLine("Oh no your tamagotchi died");
+                if (action == "feed")
+                {
+                    tamagotchi.Feed();
+                }
+
+                if (action == "stats")
+                {
+                    tamagotchi.PrintStats();
+                }
+
+                if (action == "hi")
+                {
+                    tamagotchi.Hi();
+                }
+
+                if (action == "teach")
+                {
+                    Console.WriteLine();
+                    Text.GotchiWord(tamagotchi);
+                    word = Console.ReadLine();
+                    tamagotchi.Teach(word);
+                }
+
+                if (action == "")
+                {
+                    tamagotchi.Tick();
+                }
+            }
 
             Console.ReadLine();
         }
