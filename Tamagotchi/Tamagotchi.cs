@@ -81,8 +81,6 @@ namespace Tamagotchi
             Boredom += Math.Max(1, ((int)dt.TotalSeconds) / 300);
 
             time = DateTime.Now;
-
-            PrintStats();
         }
 
         public void PrintStats() //skriver ut nuvarande hunger och bredom, och meddelar också huruvida tamagotchin lever.
@@ -101,7 +99,6 @@ namespace Tamagotchi
             }
             else
             {
-                Console.Clear();
                 isAlive = false;
                 Text.GotchiDead();
             }

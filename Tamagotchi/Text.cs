@@ -14,7 +14,7 @@ namespace Tamagotchi
 
         public static void GotchiDead()
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("Oh no your tamagotchi died.");
         }
 

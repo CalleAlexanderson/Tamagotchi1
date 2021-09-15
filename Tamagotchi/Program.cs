@@ -19,11 +19,11 @@ namespace Tamagotchi
 
             Text.GotchiName(tamagotchi);
 
-            Console.WriteLine();
-            Text.GotchiAction(tamagotchi);
-
             while (tamagotchi.GetAlive())
             {
+                Console.WriteLine();
+                Text.GotchiAction(tamagotchi);
+
                 action = Console.ReadLine().ToLower();
 
                 if (action == "feed")
